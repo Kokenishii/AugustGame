@@ -15,7 +15,7 @@ public class CheckGround : MonoBehaviour {
 	}
     private void OnCollisionEnter2D(Collision2D collision)
 	{
-        print("collision detected");
+        //print("collision detected");
         if(collision.gameObject.CompareTag("ground"))	
         {
             GetComponentInParent<PlayerControl>().isGrounded = true;

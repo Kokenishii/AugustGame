@@ -1,0 +1,2 @@
+/Users/koken/Documents/Game Projects/Tencent Game Competition/AugustGame/AugustGame/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache
+/Users/koken/Documents/Game Projects/Tencent Game Competition/AugustGame/AugustGame/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache

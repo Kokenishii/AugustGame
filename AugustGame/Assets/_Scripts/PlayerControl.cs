@@ -10,18 +10,31 @@ public class PlayerControl : MonoBehaviour {
     //public LayerMask groundLayers;
     //public Transform checkGround;
     public bool isGrounded;
+    bool facingRight=true;
 	// Use this for initialization
 	void Start () {
         rbPlayer = gameObject.GetComponent<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        move = new Vector2(Input.GetAxis("Horizontal")* moveSpeed, rbPlayer.velocity.y);
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        move = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbPlayer.velocity.y);
         rbPlayer.velocity = move;
-        if(isGrounded && Input.GetKeyDown(KeyCode.Space))
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rbPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
+        if ((move.x > 0 && !facingRight)||(move.x<0 && facingRight) )
+        {
+            flip();
+        }
+
 	}
+    void flip()
+    {
+        facingRight = !facingRight;
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y,transform.localScale.z);
+    }
 }
