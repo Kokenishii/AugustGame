@@ -24,14 +24,19 @@ public class PlayerControl : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetAxis("Horizontal") == 0)
+        if (Input.GetAxis("Horizontal") == 0||!isGrounded)
         {
             isWalking = false;
         }
         else
         {
-            isWalking = true;
+            if(isGrounded)
+            {
+                isWalking = true;
+            }
+
         }
+
         playerAnimator.SetBool("Walking",isWalking);
 
     }

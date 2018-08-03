@@ -13,7 +13,7 @@ public class CameraBehaviour : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void LateUpdate () {
         followTo = new Vector3(myPlayer.position.x, myPlayer.position.y+offsetY, transform.position.z);
 
         transform.position = Vector3.Lerp(transform.position, followTo, lerpTime);
