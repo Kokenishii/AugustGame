@@ -19,12 +19,11 @@ public class UIManager : MonoBehaviour {
         {
             
             if (
-               Input.GetKey(KeyCode.Space)
+               Input.GetKey(KeyCode.E)
                && thisUI != null)
             {
-                print("UIManager:Triggered");
+                //print("UIManager:Triggered")；
                 thisUI.SetActive(true);
-                //StartCoroutine(UIdead());
 
             }
         }
