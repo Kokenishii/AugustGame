@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour {
     Rigidbody2D rbPlayer;
     Vector2 move;
     public float jumpForce;
+    public float instantJumpForce;
     public float moveSpeed = 1f;
     //public LayerMask groundLayers;
     //public Transform checkGround;
@@ -14,6 +15,7 @@ public class PlayerControl : MonoBehaviour {
 
     Animator playerAnimator;
     bool isWalking=false;
+    public GameObject jetTrail;
   
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,25 @@ public class PlayerControl : MonoBehaviour {
 
     void Update()
     {
+        //player jump function
+        if (Input.GetKey(KeyCode.Space))
+        {
+            jetTrail.gameObject.SetActive(true);
+            if(isGrounded)
+            {
+                rbPlayer.AddForce(new Vector2(0, instantJumpForce), ForceMode2D.Impulse);
+            }
+            print("jumped");
+            rbPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Force);
+        }
+        else{
+            jetTrail.gameObject.SetActive(false);
+        }
+
+
+
+
+       
         if (Input.GetAxis("Horizontal") == 0||!isGrounded)
         {
             isWalking = false;
@@ -44,15 +65,12 @@ public class PlayerControl : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         //player move control
-        move = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rbPlayer.velocity.y);
+        move = new Vector2(Input.GetAxis("Horizontal") * moveSpeed*Time.deltaTime, rbPlayer.velocity.y);
         rbPlayer.velocity = move;
 
-        //player jump function
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            rbPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-        }
+       
 
         //player direction change function
         if ((move.x > 0 && !facingRight)||(move.x<0 && facingRight) )
